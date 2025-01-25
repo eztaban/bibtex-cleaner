@@ -18,13 +18,6 @@ class LatexCitationCleaner:
         self.cite_keys: List[str] = list()
         
         self.folder = None
-        # read bib content
-        # for each entry in tex, read tex content
-        
-        # find matches for bib, do the same for all tex files
-        # then ensure that all relevant information is made available in a nice format
-        # make sure it can be exported to excel or similar
-        # make sure new .bib file contains references from all .tex files
     
     def specific_files(self, dot_bib_location:str, dot_tex_location: Union[List[str], str]) -> None:
         """This method will load locations of specific .bib and .tex files to be analyzed

@@ -332,5 +332,3 @@ To further elaborate, we also use \cite{smith2023, doe2022} again.
 This project is licensed under the MIT License.
 
 ---
-
-Feel free to adapt further if needed! Let me know if you have additional requirements.
