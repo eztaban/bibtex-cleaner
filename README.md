@@ -32,13 +32,21 @@ This document describes the CLI option, but the tool can also be used from a [no
 
 2. Install required dependencies:
 
-   ```bash
-   conda env create -f environment_linux.yaml --name NEW_ENV_NAME
-   ```
+    > Drop the `--name`-flag to inherit the environment name from the yaml file  
+    Get miniconda: [Miniconda](https://docs.anaconda.com/miniconda/install/)
 
-  - pandas
-  - openpyxl
-  - python 3.10
+    ```bash
+    conda env create -f environment_linux.yaml --name NEW_ENV_NAME
+    ``` 
+
+    ```bash
+    conda env create -f environment_windows.yaml --name NEW_ENV_NAME
+    ```
+
+    - pandas
+    - openpyxl
+    - python 3.10
+    - ipykernel (for jupyter notebook interface)
 ---
 
 ## Usage
