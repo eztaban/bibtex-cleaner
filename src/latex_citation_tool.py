@@ -163,8 +163,12 @@ class LatexCitationCleaner:
         pattern = r"\\cite\{([^}]+)\}"
         # Find all matches of \cite{...}
         matches = re.findall(pattern, stringline)
+        # Split any comma-separated IDs and flatten the list
+        flattened_matches = [item.strip() for match in matches for item in match.split(',')]
         # Convert matches to a set to get unique values, then back to a list
-        unique_matches = list(set(matches))
+        unique_matches = list(set(flattened_matches))
+        # Sort the list for consistent output
+        unique_matches.sort()
         return unique_matches
 
     def export_citations_to_excel(self, all_references:List[str], used_citations:List[str], filename:str="citations_report.xlsx") -> pd.DataFrame:
