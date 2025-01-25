@@ -83,9 +83,9 @@ This document describes the CLI option, but the tool can also be used from a [no
 
 ## Usage
 
-Place folder or zip-file with latex project in folder `input`
-
-Run the CLI tool using Python's `main.py`:
+* Create folder called `input` at same level as `main.py`
+* Place folder or zip-file with latex project in folder `input`
+* Run the CLI tool using Python's `main.py`:
 
 ```bash
 python main.py [OPTIONS]
