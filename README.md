@@ -172,7 +172,8 @@ project/
 │   ├── argparser.py            # Argument handling
 |   ├── cleanup.py              # Clear folders
 ├── README.md               # Documentation
-├── requirements.txt        # Dependencies
+├── environment_linux.yml   # Dependencies for linux
+├── environment_windows.yml # Dependencies for windows
 ```
 
 ## How does it work
