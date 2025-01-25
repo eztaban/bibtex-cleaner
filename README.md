@@ -8,6 +8,38 @@ This document describes the CLI option, but the tool can also be used from a [no
 
 [API documentation.](doc.md)
 
+- [LaTeX Citation Cleaner](#latex-citation-cleaner)
+  - [Features](#features)
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [Command-Line Arguments](#command-line-arguments)
+    - [Examples](#examples)
+      - [1. Process All `.tex` Files in a Folder](#1-process-all-tex-files-in-a-folder)
+      - [2. Process All `.tex` Files in a Zip File](#2-process-all-tex-files-in-a-zip-file)
+      - [3. Process Specific `.tex` Files with a `.bib` File (Folder-Based)](#3-process-specific-tex-files-with-a-bib-file-folder-based)
+      - [4. Process Specific `.tex` Files with a `.bib` File (Zip-Based)](#4-process-specific-tex-files-with-a-bib-file-zip-based)
+    - [Notes](#notes)
+  - [Development](#development)
+    - [Folder Structure](#folder-structure)
+  - [How does it work](#how-does-it-work)
+    - [1. Finding entries in the bib file](#1-finding-entries-in-the-bib-file)
+      - [1. `r'@(\w+)\{([^,]+),'`](#1-rw)
+        - [Full Regex: `@(\w+)\{([^,]+),`](#full-regex-w)
+        - [Example Matches:](#example-matches)
+    - [2. Finding citations in the tex file](#2-finding-citations-in-the-tex-file)
+      - [1. **Regex Pattern**](#1-regex-pattern)
+      - [Example:](#example)
+      - [2. **Finding Matches**](#2-finding-matches)
+      - [Example:](#example-1)
+      - [3. **Flattening and Splitting by Commas**](#3-flattening-and-splitting-by-commas)
+      - [Example:](#example-2)
+      - [4. **Removing Duplicates**](#4-removing-duplicates)
+      - [Example:](#example-3)
+    - [**Example Input and Output**](#example-input-and-output)
+      - [Input:](#input)
+      - [Output:](#output)
+  - [License](#license)
+
 
 ---
 
@@ -147,6 +179,22 @@ project/
 
 The tool relies on regex to find entries in the .bib file and the accompanying citations in the .tex files.  
 These entries are compared and unused as well as used entries are identified enabling the creation of a new .bib file with only used citations and a "summary-report" in excel to see which citations were used or unused for manual validation if needed.
+
+The tool expects entries in the .bib file to follow the following pattern:
+
+
+```bibtex
+@publication_type{ID,
+  field_A = {Value_A},
+  field_B = {Value B},
+  ...
+}
+```
+
+And citations in the .tex file to use the following pattern:
+```latex
+\cite{ID}, \cite{ID_A, ID_B, ... ID_N}
+```
 
 ### 1. Finding entries in the bib file
 
