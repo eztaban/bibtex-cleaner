@@ -4,8 +4,8 @@
 
 The LaTeX Citation Cleaner is a Python tool designed to process `.tex` and `.bib` files for cleaning and managing LaTeX citations. The tool supports both folder-based and zip-based workflows and provides utilities for analyzing and exporting citation data.
 
-[Main Readme](README.md)  
-[Main Notebook](main.ipynb)
+[Main Readme](../README.md)  
+[Main Notebook](../main.ipynb)
 
 - [LaTeX Citation Cleaner API Reference](#latex-citation-cleaner-api-reference)
   - [Overview](#overview)
@@ -39,7 +39,6 @@ The LaTeX Citation Cleaner is a Python tool designed to process `.tex` and `.bib
         - [`process_specific_tex_in_folder(tex_files: List[str], bib_file: str, folder: str)`](#process_specific_tex_in_foldertex_files-liststr-bib_file-str-folder-str)
         - [`process_specific_tex_in_zip(tex_files: List[str], bib_file: str, zip_file: str)`](#process_specific_tex_in_ziptex_files-liststr-bib_file-str-zip_file-str)
 
-
 ---
 
 ## Classes
@@ -50,6 +49,7 @@ This is the base class that provides core functionality for processing `.tex` an
 This version of the tool is the base and the one the notebook interacts with.  
 
 #### Attributes
+
 - `tex_locations`: List of paths to `.tex` files to process.
 - `bib_locations`: Path to the `.bib` file.
 - `tex_content`: List of contents of `.tex` files.
@@ -61,6 +61,7 @@ This version of the tool is the base and the one the notebook interacts with.
 #### Methods
 
 ##### `specific_files(dot_bib_location: str, dot_tex_location: Union[List[str], str])`
+
 Loads specific `.tex` and `.bib` file paths to analyze.
 
 - **Arguments**:
@@ -70,6 +71,7 @@ Loads specific `.tex` and `.bib` file paths to analyze.
 ---
 
 ##### `specific_files_in_zip(zip: str, dot_bib_location: str, dot_tex_location: Union[List[str], str])`
+
 Unpacks a zip file and loads specific `.tex` and `.bib` files for analysis.
 
 - **Arguments**:
@@ -80,6 +82,7 @@ Unpacks a zip file and loads specific `.tex` and `.bib` files for analysis.
 ---
 
 ##### `all_tex_in_folder(folder: str, bib_file: str = None)`
+
 Loads all `.tex` files in the specified folder. If no `.bib` file is specified, the tool automatically detects one.
 
 - **Arguments**:
@@ -89,6 +92,7 @@ Loads all `.tex` files in the specified folder. If no `.bib` file is specified, 
 ---
 
 ##### `all_tex_in_zip(zip: str, bib_file: str = None)`
+
 Unpacks a zip file and processes all `.tex` files inside it. Optionally detects a `.bib` file.
 
 - **Arguments**:
@@ -98,18 +102,22 @@ Unpacks a zip file and processes all `.tex` files inside it. Optionally detects 
 ---
 
 ##### `load()`
+
 Loads the content of all `.tex` files and the `.bib` file specified.
 
 ---
 
 ##### `analyze()`
+
 Analyzes citations:
+
 - Extracts unique citations from `.tex` files.
 - Extracts unique keys from the `.bib` file.
 
 ---
 
 ##### `to_excel(filename: str = None) -> pd.DataFrame`
+
 Exports an overview of unused and used citations to an Excel file and returns the same as a Pandas DataFrame.
 
 - **Arguments**:
@@ -120,6 +128,7 @@ Exports an overview of unused and used citations to an Excel file and returns th
 ---
 
 ##### `make_clean_bib(bib_name: str = None)`
+
 Creates a new `.bib` file containing only citations used in the `.tex` files.
 
 - **Arguments**:
@@ -128,16 +137,19 @@ Creates a new `.bib` file containing only citations used in the `.tex` files.
 ---
 
 ##### `read_tex_file(filepath: str) -> str`
+
 Reads and returns the content of a `.tex` file.
 
 ---
 
 ##### `read_bib_file(filepath: str) -> str`
+
 Reads and returns the content of a `.bib` file.
 
 ---
 
 ##### `find_unique_citation_keys(stringline: str) -> List[str]`
+
 Finds unique citation keys in the provided `.bib` content.
 
 - **Arguments**:
@@ -148,6 +160,7 @@ Finds unique citation keys in the provided `.bib` content.
 ---
 
 ##### `find_unique_cites(stringline: str) -> List[str]`
+
 Finds unique citations in the provided `.tex` content.
 
 - **Arguments**:
@@ -158,6 +171,7 @@ Finds unique citations in the provided `.tex` content.
 ---
 
 ##### `export_citations_to_excel(all_references: List[str], used_citations: List[str], filename: str = "citations_report.xlsx") -> pd.DataFrame`
+
 Creates and exports an Excel file summarizing used and unused citations.
 
 - **Arguments**:
@@ -170,6 +184,7 @@ Creates and exports an Excel file summarizing used and unused citations.
 ---
 
 ##### `filter_bib_entries(bib_content: str, used_citations: list, output_filename: str = "filtered_biblio.bib")`
+
 Filters unused citations from the `.bib` file and saves a cleaned `.bib` file.
 
 - **Arguments**:
@@ -180,16 +195,19 @@ Filters unused citations from the `.bib` file and saves a cleaned `.bib` file.
 ---
 
 ##### `get_tex_files_in_folder() -> List[str]`
+
 Finds and returns all `.tex` files in the specified folder.
 
 ---
 
 ##### `get_biblio_in_folder() -> str`
+
 Finds and returns the single `.bib` file in the specified folder.
 
 ---
 
 ##### `unpack_zip(zip_file: str, target_folder: str = "tmp") -> str`
+
 Unpacks a zip file into the specified folder and returns the folder path.
 
 - **Arguments**:
@@ -199,6 +217,7 @@ Unpacks a zip file into the specified folder and returns the folder path.
 ---
 
 ##### `clear_folder(folder: str)`
+
 Deletes the contents of a folder without removing the folder itself.
 
 ---
@@ -210,24 +229,29 @@ A CLI-specific implementation of `LatexCitationCleaner` with convenience methods
 #### Methods
 
 ##### `autorun()`
+
 Automatically runs the full pipeline: loading, analyzing, exporting, and cleaning.
 
 ---
 
 ##### `process_all_tex_in_folder(folder: str)`
+
 Processes all `.tex` files in a folder.
 
 ---
 
 ##### `process_all_tex_in_zip(zip_file: str)`
+
 Processes all `.tex` files in a zip file.
 
 ---
 
 ##### `process_specific_tex_in_folder(tex_files: List[str], bib_file: str, folder: str)`
+
 Processes specific `.tex` files with a `.bib` file in a folder.
 
 ---
 
 ##### `process_specific_tex_in_zip(tex_files: List[str], bib_file: str, zip_file: str)`
+
 Processes specific `.tex` files with a `.bib` file in a zip file.
