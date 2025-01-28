@@ -24,3 +24,25 @@ project/
 ## Future aspirations
 
 * Publish as a flatpak
+
+## How to run tests
+
+Tests have been made to run with `pytest`.  
+
+To run individual tests:
+
+```python
+pytest tests/name_of_test.py
+```
+
+To rund all tests at once:  
+
+```python
+pytest tests/
+```
+
+For additional context when tests are run:  
+
+```
+pytest tests/ -v
+```
