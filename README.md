@@ -38,7 +38,8 @@ This document describes the CLI option, but the tool can also be used from a [no
 - Process **all `.tex` files** in a folder or zip archive.
 - Process **specific `.tex` files** with a given `.bib` file.
 - Support for both folder-based and zip-based input.
-- Temporary unpacking for zip files.
+- Produce a `.bib` file containing only used entries from the `.tex` files
+- Produce a summary of used and unused entries in an excel file 
 - Automatically assumes `--all_tex` when only `--folder` or `--zip` is specified.
 
 ---
@@ -54,12 +55,12 @@ This document describes the CLI option, but the tool can also be used from a [no
 
 2. Install required dependencies:
 
-    > Drop the `--name`-flag to inherit the environment name from the yaml file  
-    Get miniconda: [Miniconda](https://docs.anaconda.com/miniconda/install/)
-
     ```bash
     conda env create -f environment_linux.yaml --name NEW_ENV_NAME
-    ``` 
+    ```
+
+    > Drop the `--name`-flag to inherit the environment name from the yaml file  
+    Get miniconda: [Miniconda](https://docs.anaconda.com/miniconda/install/)
 
     ```bash
     conda env create -f environment_windows.yaml --name NEW_ENV_NAME
@@ -69,6 +70,7 @@ This document describes the CLI option, but the tool can also be used from a [no
     - openpyxl
     - python 3.10
     - ipykernel (for jupyter notebook interface)
+    - pytest (not included in environment file)
 
 ---
 
