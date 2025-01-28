@@ -79,7 +79,7 @@ class LatexCitationCleaner:
         """
         for tf in self.tex_content:
             self.cites.append(self.find_unique_cites(tf))
-        self.cites = list(set(*self.cites))
+        self.cites = sorted(list(set(*self.cites)))
         self.cite_keys = self.find_unique_citation_keys(self.bib_content)
     
     def to_excel(self, filename:str=None) -> pd.DataFrame:
@@ -105,10 +105,11 @@ class LatexCitationCleaner:
             bib_name (str, optional): Name of exported .bib-file. Defaults to filtered_biblio.bib.
         """
         if bib_name is None:
-            self.filter_bib_entries(self.bib_content, self.cites)   
+            filtered_entries = self.filter_bib_entries(self.bib_content, self.cites)   
         else:
             # todo: check filename ends with bib
-            self.filter_bib_entries(self.bib_content, self.cites)   
+            filtered_entries = self.filter_bib_entries(self.bib_content, self.cites)   
+        return filtered_entries
         
     def read_tex_file(self, filepath: str) -> str:
         """Reads the entire content of a .tex file."""
@@ -139,11 +140,12 @@ class LatexCitationCleaner:
         matches = re.findall(pattern, stringline)
         # Extract only the keys (second part of each tuple), then remove duplicates
         unique_keys = list(set(match[1] for match in matches))
+        unique_keys = sorted(unique_keys)
         return unique_keys
     
     def find_unique_cites(self, stringline: str) -> List[str]:
         """Will read the content of a .tex file.
-        Find all citation IDs used in the .tex file, meaning \cite{ID}.
+        Find all citation IDs used in the .tex file, meaning \\cite{ID}.
         It will return a list of unique used citations.
 
         Args:
@@ -235,6 +237,8 @@ class LatexCitationCleaner:
                 f.write(entry.strip() + "\n\n")  # Add extra line breaks between entries
         
         print(f"Filtered .bib file saved as '{output_location}'")
+        print(filtered_entries)
+        return filtered_entries
     
     
     def get_tex_files_in_folder(self) -> List[str]:
